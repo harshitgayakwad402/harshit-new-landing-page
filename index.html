@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookNow Landing Page</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">BookNow</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="overlay">
+      <div class="content">
+        <h1>Your Dream Trip Awaits</h1>
+        <p>Reserve your spot before time runs out!</p>
+
+        <div class="counter">
+          <div class="count-item"><span id="months">00</span><p>Months</p></div>
+          <div class="count-item"><span id="days">00</span><p>Days</p></div>
+          <div class="count-item"><span id="hours">00</span><p>Hours</p></div>
+          <div class="count-item"><span id="minutes">00</span><p>Minutes</p></div>
+          <div class="count-item"><span id="seconds">00</span><p>Seconds</p></div>
+        </div>
+
+        <a class="btn" href="#contact">Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>We create unforgettable travel experiences. Our platform combines a beautiful interface with powerful booking features.</p>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="section">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="card">
+        <img src="https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg" alt="Easy Booking" />
+        <h3>Easy Booking</h3>
+        <p>Quick and simple reservation process to get your trip confirmed instantly.</p>
+        <button class="btn">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg" alt="Stunning Destinations" />
+        <h3>Stunning Destinations</h3>
+        <p>Explore breathtaking tropical beaches and crystal-clear waters curated just for you.</p>
+        <button class="btn">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg" alt="Best Deals" />
+        <h3>Best Deals</h3>
+        <p>Find competitive prices and exclusive offers on top-rated accommodations.</p>
+        <button class="btn">Book Now</button>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/1320684/pexels-photo-1320684.jpeg" alt="24/7 Support" />
+        <h3>24/7 Support</h3>
+        <p>Our friendly team is available anytime to assist you with your booking.</p>
+        <button class="btn">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>© 2025 BookNow. All rights reserved.</footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const endDate = new Date("2025-12-31T23:59:59").getTime();
+    const monthsEl = document.getElementById("months");
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    function updateCounter() {
+      const now = new Date().getTime();
+      let distance = endDate - now;
+
+      const totalMonths = Math.floor(distance / (1000 * 60 * 60 * 24 * 30));
+      const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      monthsEl.textContent = totalMonths.toString().padStart(2,'0');
+      daysEl.textContent = days.toString().padStart(2,'0');
+      hoursEl.textContent = hours.toString().padStart(2,'0');
+      minutesEl.textContent = minutes.toString().padStart(2,'0');
+      secondsEl.textContent = seconds.toString().padStart(2,'0');
+
+      if(distance < 0){
+        clearInterval(timer);
+        document.querySelector(".counter").innerHTML = "Booking Closed";
+      }
+    }
+
+    const timer = setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
